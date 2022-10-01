@@ -1,5 +1,4 @@
 import React from "react"
-import { PRODUCTS } from "../products"
 import Category from "./Category"
 import Product from "./Product"
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { PRODUCTS } from "../products"
 import ProductTable from "./ProductTable"
 import SearchBar from "./SearchBar"
