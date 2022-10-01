@@ -2,26 +2,37 @@ import React, { useState, useEffect } from "react"
 import { PRODUCTS } from "../products"
 import ProductRow from "./ProductRow"
 
-type Props = {}
-
-const ProductTable = (props: Props) => {
+type Props = {
+  allProducts: {
+    category: string
+    price: string
+    stocked: boolean
+    name: string
+  }[]
+}
+const ProductTable = ({ allProducts }: Props) => {
   const [rows, setRows] = useState<JSX.Element[]>([])
 
   useEffect(() => {
     let rowsTemp = []
     let categories: string[] = []
-    PRODUCTS.map((product) => {
+    allProducts.map((product) => {
       if (!categories.find((cat) => product.category === cat)) {
         categories.push(product.category)
       }
     })
-    console.log(categories)
     setRows(
-      categories.map((category) => {
-        return <ProductRow category={category} />
+      categories.map((category, index) => {
+        return (
+          <ProductRow
+            key={index}
+            category={category}
+            allProducts={allProducts}
+          />
+        )
       })
     )
-  }, [])
+  }, [allProducts])
 
   return (
     <table>
